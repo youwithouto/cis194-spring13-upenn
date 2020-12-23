@@ -1,4 +1,4 @@
-# Week 01 | Algebraic Data Types
+# Week 02 | Algebraic Data Types
 
 ## Thoughts
 
