@@ -1,4 +1,4 @@
-# Week 07 | Lazy Evaluation
+# Week 06 | Lazy Evaluation
 
 ## Strict Evaluation
 
