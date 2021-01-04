@@ -84,8 +84,9 @@ When we make a type, we think about which behaviour it supports, i.e., what it c
 
 ---
 
-A monoid is when you have an associative binary function and a value which acts as an identity with respect to that function. 
-- When something acts as an identity with respect to a function, it means that when called with that function and some other value, the result is always equal to that other value. 
+A `monoid` is another ***type class***.
+- when you have an **associative binary function** and a value which acts as **an identity with respect to that function**. 
+  - When something acts as an identity with respect to a function, it means that when called with that function and some other value, the result is always equal to that other value. 
 
 Another standard type class found in the `Data.Monoid` module
 
@@ -100,12 +101,14 @@ class Monoid m where
 (<>) :: Monoid m => m -> m -> m
 (<>) = mappend
 ```
-- Only concrete types can be made instances of `Monoid`, because the "m" in the type class definition doesn't take any type parameters. 
-  - This is different from `Functor` and `Applicative`, which require their instances to be type constructors which take one parameter. 
-- `mempty` is not really a function, since it doesn't take parameters, so it's a polymorphic constant, representing the identity value for a particular monoid. 
+- Only ***concrete types*** can be made instances of `Monoid`, because the "m" in the type class definition doesn't take any type parameters. 
+  - This is different from `Functor` and `Applicative`, which require their instances to be ***type constructors*** which take one parameter. 
+- `mempty` is not really a function, since it doesn't take parameters, so it's a polymorphic constant, representing **the identity value for a particular monoid**. 
 - `mappend` is the binary function, which takes two values of the same type and returns a value of that type as well.
+  - `mappend` should be **associative**
+    - The order in which we use `mappend` to reduce several monoid values into one doesn't matter.
   - The decision to name `mappend` as it's named was kind of unfortunate, because it implies that we're appending two things in some way. 
-    - Most `Monoid` instances does not "append" values and `mappend` is just a binary function that takes two monoid values and returns a third. 
+    - Most `Monoid` instances do not "append" values and `mappend` is just a binary function that takes two monoid values and returns a third. 
   - `(<>)` is defined as a synonym for `mappend`, simply because writing "mappend" is tedious.
 - `mconcat` takes a list of monoid values and reduces them to a single value by doing `mappend` between the list's elements. 
   - It has a default implementation which just takes `mempty` as a starting value and folds the list from the right with `mappend`
@@ -241,12 +244,13 @@ What if the type of the content of the `Maybe` aren't an instance of `Monoid`?
 
 ### Using monoids to fold data structures
 
-> One of the more interesting ways to put monoids to work is to make them help us define folds over various data structures. 
+> One of the more interesting ways to put `monoids` to work is to make them help us define `folds` over various data structures. 
 
 The `Foldable` type class was introduced because there are so many data structures that work nicely with folds. 
 - `Fordable` is for things that can be folded up.
+  - Just like `Functor` is for things that can be mapped over.
 - `Data.Foldable`
-  - It exports functions whose names clash with the one sfrom teh `Prelude`
+  - It exports functions whose names clash with the ones from the `Prelude`
   - `import qualified Foldable as F`
 
 ```haskell
