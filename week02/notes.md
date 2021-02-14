@@ -2,7 +2,7 @@
 
 ## Thoughts
 
-- "Haskell programmers start working on a project by defining the types", this is actually the process of creating abstractions. In the case of the [Homework](./02-ADTs.pdf), three types are defined first and functions need to be created for those types. If I wwere solving the same problems with an imperative language, I guess the first thing I do would be defining the functions for each of the types. 
+- "Haskell programmers start working on a project by defining the types", this is actually the process of creating abstractions. In the case of the [Homework](./02-ADTs.pdf), three types are defined first and functions need to be created for those types. If I were solving the same problems with an imperative language, I guess the first thing I do would be defining the functions for each of the types. 
 
 ## Useful Prelude Functions
 
@@ -70,7 +70,8 @@ Type and data constructor names must always start with a capital letter; variabl
 - Otherwise, Haskell parsers would have quite a difficult job figuring out which names represent variables and which represent constructors. 
 
 ## Pattern-Matching
-Fundamentally, pattern-matching is about taking apart a value by finding out which constructor it was built with. 
+> Fundamentally, pattern-matching is about taking apart a value by finding out which constructor it was built with. 
+
 - This information can be used as the basis for deciding what to do, in deed, in Haskell, this is the only way to make a decision. 
 
 - Parentheses are required around patterns consisting of more than just a single constructor. 
@@ -116,11 +117,12 @@ failureToZero' x = case x of
 failureToZero :: FailableDouble -> Double
 failureToZero Failure = 0
 failureToZero (OK d)  = d
-```                     
+```
 
 
 ## Recursive Data Types
-Data types can be `recursive`, that is, defined in terms of themselves. 
+>  Data types can be `recursive`, that is, defined in terms of themselves. 
+
 - The type of lists
   - A list is either empty, or a single element followed by a remaining list. 
 - The type of binary tree
@@ -135,5 +137,4 @@ tree :: Tree
 tree = Node (Leaf 'x') 1 (Node (Leaf 'y') 2 (Leaf 'z'))
 ```
 
-We often use recursive functions to process recursive data types
-  
+> We often use recursive functions to process recursive data types
