@@ -128,7 +128,7 @@ insert log Leaf = Node Leaf log Leaf
 insert log1@(_ ts1 _) (Node left log2@(_ ts2 _) right)
 	| ts1 < ts2 = Node (insert log1 left) log2 right
 	| otherwise = Node left log2 (insert log1 right)
-insert _ (Node _ (Unknown _) _) = error "Internal error"  -- always work with full types
+insert _ (Node _ (Unknown _) _) = error "Internal error"  -- always work with total functions
 ```
 
 Related Haskell Concepts:
