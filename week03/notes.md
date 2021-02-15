@@ -28,10 +28,32 @@ The code would be exactly the same; the only thing that would be different is th
 Haskell supports polymorphism for both data types and functions. 
 - The word "polymorphism" comes from Greek and means "having many forms": something which is polymorphic works for multiple types. 
 
+### Polymorphic data types
+
+```Haskell
+data List t = E | C t (List t)
+```
+
+- "t" is a type variable which can stand for nay type
+- type variables must start with a lowercase letter, whereas types must start with uppercase
+- "List t" means the List type is parameterised by a type, in much the same way that a function can be parameterised by some input
+
+
+
+### Polymorphic functions
+
+> The caller of polymorphic functions gets to pick the types
+
+
+
 
 
 ## The Prelude
-The Prelude is a module with a bunch of standard functions that gets implicitly imported into every Haskell program. 
+> The Prelude is a module with a bunch of standard functions that gets implicitly imported into every Haskell program. 
+
+- [Prelude](https://hackage.haskell.org/package/base-4.14.1.0/docs/Prelude.html)
+
+
 
 ## Total and Partial Functions
 
@@ -39,7 +61,8 @@ The Prelude is a module with a bunch of standard functions that gets implicitly 
 - is a `partial function`
   - There are certain inputs for which `head` will crash
   - Functions which have certain inputs that will them recurse infinitely are also called partial
-  - Functions which are well-defined on all possible inputs are known as `total functions`
+
+> Functions which are well-defined on all possible inputs are known as `total functions`
 
 
 > It is good Haskell practice to avoid partial functions as much as possible. 
@@ -58,4 +81,5 @@ Partial Prelude should not be used:
 ### Writing Partial Functions
 Two approaches to write partial functions: 
 - Change the output type of the function to indicate the possible failure. 
+  - `Maybe`
 - When some condition is really guaranteed, then the types ought to reflect the guarantee. 
