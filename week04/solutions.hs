@@ -69,11 +69,9 @@ map' f = foldr work [] where work x acc = f x : acc
 {-
 The first parameters, i.e., the function, taken by foldl and foldr do a similar job, which is putting a new element into the accumulated list, but the the difference is the sequence of the functions parameters.
 foldl's first parameter takes the list as its first argument; while foldr's first parameter takes the list as its second argument.
-The other difference between foldl and foldr is the sequence of calculation performed on the input list:
-foldl's starts the calculation from the first element in the list; while foldr starts the calculation from the last element in the list.
 -}
 myFoldl :: (a -> b -> a) -> a -> [b] -> a
-myFoldl f base xs = foldr (flip f) base (reverse xs)
+myFoldl f base xs = foldr (flip f) base xs
 
 -- Exercise 4: Finding primes
 -- Given an integer n, your function should generate all the odd prime numbers up to 2n + 2.
