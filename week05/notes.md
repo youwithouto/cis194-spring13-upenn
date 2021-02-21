@@ -1,18 +1,32 @@
 # Week 05 | More Polymorphism and Type Classes
 
-Haskell's brand of polymorphism is known as parametric polymorphism
-- This means that polymorphic functions must work uniformly for any input type. 
+Haskell's brand of polymorphism is known as `parametric polymorphism`
+- This means that `polymorphic functions` must work uniformly for any input type. 
 
 ## Parametricity
 
+```Haskell
+a -> a -> a
+```
+
+- "a" is a `type variable` which can stand for any type
+- The caller of a polymorphic function gets to choose the type. 
+
 `parametric` is a fancy term for "works uniforly for any type chosen by the caller"
 
-`type variable` can stand for any type
+Haskell types are erased by the compiler after being checked
 
-The caller of a polymorphic function gets to choose the type. 
-
-haskell types are erased by the compiler after being checked: 
 - At runtime, there is no type information around to query
+
+
+
+```Haskell
+f :: a -> a -> a
+```
+
+- The function is parametric in the type "a"
+
+
 
 
 
@@ -35,7 +49,7 @@ We can use Haskell to decide what to do based on types
 
 `Num`, `Eq`, `Ord`, and `Show` are `type classes`, and we say that `(==)`, `(<)`, and `(+)` are `type-class polymorphic`
 
-Type classes correspond to set of types which have certain operations defined for them, and type class polyporphic functions work only for types which are instances of the type classes in question. 
+`Type classes` correspond to set of types which have certain operations defined for them, and type class polyporphic functions work only for types which are instances of the type classes in question. 
 
 ```haskell
 class Eq a where
@@ -68,14 +82,27 @@ instance Eq Foo where
     foo1 /= foo2 = not (foo1 == foo2)
 ```
 
+
+
+```haskell
+data Foo' = F' Int | G' Char
+	deriving (Eq, Ord, Show)
+```
+
+– Automatically derive instances of teh Eq, Old, and Show type classes for the data type Foo'
+
+
+
 ### Type Classes and Java Interfaces
 
-Type classes are quite similar to Java interfaces. Both define a set of types/classes which implement a specified list of operations.
+Type classes are quite similar to Java interfaces. 
 
-There are a couple of important ways in which type classes are more general than Java interfaces:
-- When a Java class is defined, any interfaces it implements must be declared. 
-- Type class instances, on the other hand, are declared separately from the declaration of the corresponding types, and can even be put in a separate module.
-- The types that can be specified for type class methods are more general and flexible than the signatures that can be given for Java interface methods, especially when multi-parameter type classes enter the picture.
+- Both define a set of types/classes which implement a specified list of operations.
+
+- There are a couple of important ways in which type classes are more general than Java interfaces:
+  - When a Java class is defined, any interfaces it implements must be declared. 
+  - Type class instances, on the other hand, are declared separately from the declaration of the corresponding types, and can even be put in a separate module.
+  - The types that can be specified for type class methods are more general and flexible than the signatures that can be given for Java interface methods, especially when multi-parameter type classes enter the picture.
 
 ### Standard Type Classes
 
